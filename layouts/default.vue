@@ -1,8 +1,30 @@
 <template>
   <div>
+    <vs-row style="height: 50px" vs-type="flex">
+      <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
+        EvaEnergyService (LOGO)
+      </vs-col>
+      <vs-col vs-w="6"></vs-col>
+      <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
+        <vs-button to="/" type="flat" icon="home" size="large">Home</vs-button>
+      </vs-col>
+    </vs-row>
     <nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  head(){
+    return {
+      title: 'EvaWelcome',
+      meta:[
+        {name:"viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
+      ]
+    }
+  }
+}
+</script>
 
 <style>
 html {
