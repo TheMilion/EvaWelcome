@@ -38,7 +38,7 @@
               </vs-col>
             <vs-col class="step" v-if="confirmedAnagrafica" vs-w="6">
                 <h4>Ruolo</h4>
-                <div class="centerDiv">
+                <div class="leftRadio">
                     <vs-radio v-model="ruoloRadio"  :disabled="!confirmedAnagrafica" vs-value="visitatore">Visitatore</vs-radio>
                     <vs-radio v-model="ruoloRadio" :disabled="!confirmedAnagrafica" vs-value="cliente">Cliente</vs-radio>
                     <vs-radio v-model="ruoloRadio" :disabled="!confirmedAnagrafica" vs-value="agente">Agente</vs-radio>
@@ -48,7 +48,7 @@
             </vs-col>
             <vs-col class="final-step" v-if="confirmedAnagrafica" vs-w="6">
                 <h4>Motivo</h4>
-                <div class="centerDiv">
+                <div class="leftRadio">
                     <vs-radio v-model="motivoRadio" :disabled="!confirmedAnagrafica"  vs-value="nondefinito">Non Definito</vs-radio>
                     <vs-radio v-model="motivoRadio" :disabled="!confirmedAnagrafica"  vs-value="colloquio">Colloquio</vs-radio>
                     <vs-radio v-model="motivoRadio" :disabled="!confirmedAnagrafica"  vs-value="meetings">Meetings</vs-radio>
@@ -82,10 +82,23 @@
                 </vs-col>
         </vs-row>
              <vs-popup title="Grazie per la sua registrazione" :active.sync="popupActive">
-            <p>
-                Ecco il suo Badge:
-                {{date}}--{{time}}
-            </p>
+           <vs-row style="" align="center">
+           
+           </vs-row>
+           <vs-row style="padding:20px;" align="center">
+                <vs-col class="" vs-w="6">
+                <div class="textBadge">
+                <h5>Riepilogo utente:</h5>
+                Nome: {{formAnagrafica.nome}}<br>
+                Cognome: {{formAnagrafica.cognome}}<br>
+                Entrata: [Data: {{date}} Ora: {{time}}]<br>
+                </div>
+                </vs-col>
+                <vs-col vs-w="6">
+                    <h5>Il suo numero di Badge</h5>
+                   <p style="font-size:70px">48</p>
+                </vs-col>
+           </vs-row>
     </vs-popup>
     </div>
 </template>
@@ -136,10 +149,7 @@ export default {
                     this.errorformAnagrafica[i] = true;
                     this.countererrorformAnagrafica ++
                 }
-                else{
-                        this.errorformAnagrafica[i] = false;
-                    }
-
+                else{this.errorformAnagrafica[i] = false;}
             }
             if(this.countererrorformAnagrafica == 0){
                 if(this.privacyCheck == false) this.errorprivacyCheck = "Devi confermare il trattamento sulla privacy"
@@ -178,6 +188,13 @@ margin-bottom:20px;
 }
 .inputText{
     padding:10px;
+}
+.leftRadio{
+  display: block;
+  text-align: left;
+}
+.textBadge{
+    text-align: left;
 }
 .container {
   margin: 0 auto;
