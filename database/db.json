@@ -1,0 +1,26 @@
+{
+    "badges":[
+        {"num":1, "id":1},
+        {"num":2, "id":2},
+        {"num":3, "id":3},
+        {"num":4, "id":4},
+        {"num":5, "id":5},
+        {"num":6, "id":6},
+        {"num":7, "id":7}
+    ],
+    "users":[
+        {
+            "id":1, 
+            "nome":"Luigi", 
+            "cognome":"Minauda",
+            "entrata": {
+                "data":"29-10-2019",
+                "ora":"9:30"
+            },
+            "uscita": {
+                "data":"29-10-2019",
+                "ora":"10:15"
+            }
+        }
+    ]
+}
