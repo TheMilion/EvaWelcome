@@ -1,22 +1,36 @@
 <template>
     <div class="container">
         <h1>Uscita</h1>
-        <h4>Seleziona il badge assegnato per uscire</h4>
-        <vs-row>
-            <vs-col class="aculonn" vs-w="4" v-for="(badge, i) in badges" :key="i">
-                <div class="circle" @click="confirmBadge(badge.num)">
-                    {{ badge.num }}
-                </div>
+        <vs-row v-if="badgesList" style="margin-top: 20px;">
+            <vs-row>
+                <vs-col vs-w="12">
+                    <h4>Ricerca oppure seleziona il badge</h4>
+                    <div class="col" style="padding-left: 40%;padding-right: 40%;">
+                        <vs-input size="large" style="width:90%" v-model="researchBadge" icon="search" icon-after="true"/>
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-col class="col" vs-w="2" v-for="(badge, i) in filtredBadges" :key="i">
+                <vs-button class="circle" @click="confirmBadge(badge.num)">
+                    <h1 style="font-size: 54px">{{ badge.num }}</h1>
+                </vs-button>
             </vs-col>
         </vs-row>
-        <vs-popup :active.sync="popupActive1" title="Conferma badge" button-close-hidden>
-            <p>Confermi che il tuo badge è {{ selectedBadge }}</p>
-            <vs-button color="danger" @click="popupActive1=false" size="large">no</vs-button>
-            <vs-button color="success" @click="deleteBadge" size="large">si</vs-button>
-            <vs-popup :active.sync="popupActive2" title="Grazie e arrivederci" button-close-hidden>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
-            </vs-popup>
-        </vs-popup>
+        <div v-if="popupActive1">
+            <p>Confermi che il tuo badge è</p>
+            <div class="col">
+                <vs-button class="circle">
+                    <h1 style="font-size: 54px">{{ selectedBadge }}</h1>
+                </vs-button>
+            </div>
+            <div>
+                <vs-button color="danger" @click="cancelConfirm" size="large" style="width: 120px">NO</vs-button>
+                <vs-button color="success" @click="deleteBadge" size="large" style="width: 120px">SI</vs-button>
+            </div>
+        </div>
+        <div v-if="popupActive2">
+            <h1>///////Saluto Generale\\\\\\\</h1> 
+        </div>
     </div>
 </template>
 
@@ -27,15 +41,34 @@ export default {
         await this.$axios.get('http://localhost:5/badges')
         .then(({data})=>{
             this.badges=data
+            this.filtredBadges = data
         })
         .catch(e=>{
-            console.log(e)
+            alert(e)
         })
+    },
+    watch:{
+        researchBadge(){
+            if(this.researchBadge) {
+                this.filtredBadges = []
+                for(let i in this.badges){
+                    if(this.badges[i].num.startsWith(this.researchBadge)) this.filtredBadges.push(this.badges[i])
+                }
+                return 
+                this.filtredBadges = this.badges.filter((badge) => badge.startsWith("N"))
+                console.log('oh ', this.researchBadge)
+            } else {
+                this.filtredBadges = this.badges
+            }
+        },
     },
     data(){
         return{
             badges:"",
+            filtredBadges:'',
             selectedBadge:'',
+            researchBadge: '',
+            badgesList: true,
             popupActive1:false,
             popupActive2:false
         }
@@ -47,19 +80,30 @@ export default {
     },
     methods:{
         confirmBadge(num){
+            this.badgesList = false
             this.popupActive1 = true
+            this.popupActive2 = false
             this.selectedBadge = num
         },
+        cancelConfirm(){
+            this.badgesList = true
+            this.popupActive1 = false
+            this.popupActive2 = false
+            this.selectedBadge = ''
+        },
         deleteBadge(){
+            this.badgesList = false
+            this.popupActive1 = false
             this.popupActive2 = true
 
-            //chiamata axios per eliminare budge
+            //chiamata axios per eliminare badge
 
-            setTimeout(this.closeReturnHome, 5000);
+            setTimeout(this.closeReturnHome, 1000);
         },
         closeReturnHome(){
             this.popupActive1 = false
             this.popupActive2 = false
+            this.badgesList = false
             this.$router.push('/')
         }
     }
@@ -68,6 +112,7 @@ export default {
 
 <style scoped>
     .container {
+        padding: 10px;
         margin: 0 auto;
         min-height: 100vh;
         display: block;
@@ -75,8 +120,8 @@ export default {
         align-items: center;
         text-align: center;
     }
-    .aculonn{
-        padding: 20px;
+    .col{
+        padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -84,9 +129,8 @@ export default {
     }
     .circle{
         background-color: rgb(166, 157, 255);
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
+        width: 250px;
+        height: 170px;
         display: flex;
         justify-content: center;
         align-items: center;
