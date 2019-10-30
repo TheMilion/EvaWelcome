@@ -49,44 +49,8 @@
     },
     {
       "id": 2,
-      "nome": "Giuseppe",
-      "cognome": "Marinelli",
-      "email": "",
-      "numtel": "",
-      "ruolo": "candidato_colloquio",
-      "motivo": "info",
-      "descrizione": "Ciao Mondo",
-      "entrata": {
-        "data": "30-10-2019",
-        "ora": "16:8:30"
-      },
-      "uscita": {
-        "data": "30-10-2019",
-        "ora": "16:14:27"
-      }
-    },
-    {
-      "id": 3,
-      "nome": "a",
-      "cognome": "a",
-      "email": "",
-      "numtel": "",
-      "ruolo": "collaboratore_esterno",
-      "motivo": "pagamento_saldo",
-      "descrizione": "",
-      "entrata": {
-        "data": "30-10-2019",
-        "ora": "16:14:49"
-      },
-      "uscita": {
-        "data": "30-10-2019",
-        "ora": "16:17:2"
-      }
-    },
-    {
-      "id": 4,
-      "nome": "asdasdasd",
-      "cognome": "asdasd",
+      "nome": "adsa",
+      "cognome": "asdfas",
       "email": "",
       "numtel": "",
       "ruolo": "visitatore",
@@ -94,7 +58,7 @@
       "descrizione": "",
       "entrata": {
         "data": "30-10-2019",
-        "ora": "16:18:15"
+        "ora": "17:25:49"
       },
       "uscita": {
         "data": null,
@@ -102,21 +66,21 @@
       }
     },
     {
-      "id": 5,
-      "nome": "adsasdasd",
-      "cognome": "asdasdasd",
+      "id": 3,
+      "nome": "asdfsdfsa",
+      "cognome": "dfasdf",
       "email": "",
       "numtel": "",
-      "ruolo": "visitatore",
-      "motivo": "non_definito",
-      "descrizione": "asdasdasasdsd",
+      "ruolo": "candidato_colloquio",
+      "motivo": "meetings",
+      "descrizione": "",
       "entrata": {
         "data": "30-10-2019",
-        "ora": "16:18:53"
+        "ora": "17:25:58"
       },
       "uscita": {
-        "data": "30-10-2019",
-        "ora": "16:19:5"
+        "data": null,
+        "ora": null
       }
     },
     {

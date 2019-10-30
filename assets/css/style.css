@@ -7,3 +7,4 @@
 .vuesax-app-is-ltr .vs-select--label {font-size: 20px;}
 .vs-textarea {height:150px; font-size:1.5rem !important;}
 .vs-con-textarea h4 {font-size: 1rem !important;}
+.vs-input--icon, .vs-icon {height: 60px !important;width: 80px !important;font-size: 70px !important}
