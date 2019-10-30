@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <vs-row style="height: 50px" vs-type="flex">
-      <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
+  <div class="allPage">
+    <vs-row style="height: 50px">
+      <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
         EvaEnergyService
       </vs-col>
-      <vs-col vs-w="6"></vs-col>
-      <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-        <vs-button to="/" type="flat" icon="home" size="large">Home</vs-button>
+      <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center"></vs-col>
+      <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
+        <vs-button 
+                      color="grey" 
+                      size="large" 
+                      style="width: 100%;"
+                      icon="home"
+                      to="/"
+                      type="filled">Home
+                      </vs-button>
       </vs-col>
     </vs-row>
-    <div class="">
+    <div class="nuxtchild">
     <nuxt />
     </div>
   </div>
@@ -17,6 +24,12 @@
 
 <script>
 export default {
+  //middleware: 'info',
+  computed: {
+    currentPage() {
+      return this.$router.history.current.name
+    }
+  },
   head(){
     return {
       title: 'EvaWelcome',
@@ -24,7 +37,7 @@ export default {
         {name:"viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
       ]
     }
-  }
+  },
 }
 </script>
 
@@ -41,4 +54,13 @@ html {
   box-sizing: border-box;
 }
 
+.nuxtchild{
+    height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    
+}
+.allPage{
+padding:20px;
+}
 </style>

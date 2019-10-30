@@ -20,6 +20,10 @@
 
 <script>
 export default {
+middleware: 'info',
+mounted(){
+  this.$cookies.remove("userTemp")
+}
 
 }
 </script>

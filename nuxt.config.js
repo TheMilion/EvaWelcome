@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@assets/css/style.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -40,6 +41,7 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    'cookie-universal-nuxt',
     '@nuxtjs/axios',
   ],
   /*
