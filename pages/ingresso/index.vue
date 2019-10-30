@@ -87,9 +87,8 @@ export default {
             return this.$store.getters['user/getUser']}
               },
     mounted() {
-            if(Object.keys(this.$store.getters['user/getUser']).length != 0){
+            if(Object.keys(this.$store.getters['user/getUser']).length != 0) {
                 this.formAnagrafica = {...this.$store.getters['user/getUser']}
-                console.log(this.formAnagrafica)
                 this.privacyCheck = true
             }
     },

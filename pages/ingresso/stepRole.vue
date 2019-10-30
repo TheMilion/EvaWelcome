@@ -11,7 +11,7 @@
                 <vs-select
                 style="width: 100%;"
                 label="Ruolo"
-                v-model="ruoloSelect">
+                v-model="userDetails.ruoloSelect">
                 <vs-select-item  v-for="(item,index) in this.ruoloArr" :key="index" :value="item.value" :text="item.text"  />
                 </vs-select>
             </vs-col>
@@ -20,14 +20,14 @@
                 <vs-select
                 label="Motivo"
                 style="width: 100%"
-                v-model="motivoSelect">
+                v-model="userDetails.motivoSelect">
                 <vs-select-item  v-for="(item,index) in this.motivoArr" :key="index" :value="item.value" :text="item.text"  />
                 </vs-select>
             </vs-col>
             <!--TextArea-->
             <vs-col style="padding:25px" vs-w="12">
                 <p style="font-size:20px ;padding-bottom:10px; color: rgba(0,0,0,.6);">Aggiungi una descrizione: </p>
-                <vs-textarea style="height:150px; max-height:200px" v-model="textarea" />
+                <vs-textarea style="height:150px; max-height:200px" v-model="userDetails.textarea" />
             </vs-col>
         </vs-row>
     </div>
@@ -39,7 +39,7 @@
                 style="width: 100%;"
                 size="large" 
                 icon="clear"
-                to="/ingresso"
+                @click="goBack()"
                 type="filled">Annulla
                 </vs-button>
             </vs-col>
@@ -48,7 +48,7 @@
                 <vs-button 
                     color="grey"
                     size="large" 
-                    style="width: 100%;"
+                    style="width: 95%; "
                     icon="done"
                     @click="confirmBadge()" 
                     type="filled">
@@ -80,6 +80,11 @@ export default {
     middleware: 'info',
     data(){
         return{
+            userDetails: {
+                ruoloSelect: "visitatore",
+                motivoSelect: "non_definito",
+                textarea : '',
+            },
             ruoloArr: [
                 {text: 'Visitatore', value: 'visitatore'},
                 {text: 'Cliente', value: 'cliente'},
@@ -96,9 +101,6 @@ export default {
             ],
             date: '',
             time: '',
-            textarea: '',
-            ruoloSelect: "visitatore",
-            motivoSelect: "non_definito",
         }
     },
      computed: {
@@ -109,8 +111,17 @@ export default {
             if(Object.keys(this.$store.getters['user/getUser']).length == 0){
                 this.$router.push("/ingresso")
             }
+            else{
+                if(Object.keys(this.$store.getters['userDetails/getUserDetails']).length != 0) {
+                this.userDetails = {...this.$store.getters['userDetails/getUserDetails']}
+            }
+            }
     },
     methods: {
+        goBack(){
+            this.$store.commit("userDetails/setState", this.userDetails)
+            this.$router.push("/ingresso")
+        },
         getCurrentDate(){
             var today = new Date();
             this.date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
@@ -162,9 +173,9 @@ export default {
                         cognome: this.MyUser.cognome,
                         email: this.MyUser.email,
                         numtel: this.MyUser.numtel,
-                        ruolo: this.ruoloSelect,
-                        motivo: this.motivoSelect,
-                        descrizione: this.textarea,
+                        ruolo: this.userDetails.ruoloSelect,
+                        motivo: this.userDetails.motivoSelect,
+                        descrizione: this.userDetails.textarea,
                         entrata: {
                             data: this.date,
                             ora: this.time,

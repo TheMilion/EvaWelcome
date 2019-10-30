@@ -1,14 +1,15 @@
 export const state = () => ({
-    page: '',
+    userDetails: {},
 })
   export const getters = {
-    getPage(state){
-      return state.page
+    getUserDetails(state){
+      return state.userDetails
     }
   }
   export const mutations = {
     setState(state,obj){
-           state.page = obj
+           state.userDetails = obj
+           this.$cookies.set("userTempDetails", state.userDetails); 
     }
   }
   export const actions = {

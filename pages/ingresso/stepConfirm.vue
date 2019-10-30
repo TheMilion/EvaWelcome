@@ -47,9 +47,15 @@ export default {
             }
                 this.$cookies.remove("userTemp")
                 this.$store.commit('user/setState', {})
+                this.$cookies.remove("userTempDetails")
+                this.$store.commit('userDetails/setState', {})
+                setTimeout(this.closeReturnHome, 120000);
             }
     },
     methods: {
+        closeReturnHome(){
+            this.$router.push("/")
+        }
     }
 }
 </script>
