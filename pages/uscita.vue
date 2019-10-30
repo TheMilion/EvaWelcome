@@ -1,18 +1,17 @@
 <template>
     <div class="container">
-        <h1>Uscita</h1>
         <vs-row v-if="badgesList" style="margin-top: 20px;">
             <vs-row>
                 <vs-col vs-w="12">
-                    <h4>Ricerca oppure seleziona il badge</h4>
+                    <h2>Ricerca oppure seleziona il badge</h2>
                     <div class="col" style="padding-left: 40%;padding-right: 40%;">
                         <vs-input size="large" style="width:90%" v-model="researchBadge" icon="search" icon-after="true"/>
                     </div>
                 </vs-col>
             </vs-row>
             <vs-col class="col" vs-w="2" v-for="(badge, i) in filtredBadges" :key="i">
-                <vs-button class="circle" @click="confirmBadge(badge.num)">
-                    <h1 style="font-size: 54px">{{ badge.num }}</h1>
+                <vs-button class="circle" @click="confirmBadge(badge.id)">
+                    <h1 style="font-size: 54px">{{ badge.id }}</h1>
                 </vs-button>
             </vs-col>
         </vs-row>
@@ -37,45 +36,35 @@
 <script>
 export default {
     name:'uscita',
-    async mounted(){
-        await this.$axios.get('http://localhost:5/badges')
-        .then(({data})=>{
-            this.badges=data
-            this.filtredBadges = data
-        })
-        .catch(e=>{
-            alert(e)
-        })
-    },
-    watch:{
-        researchBadge(){
-            if(this.researchBadge) {
-                this.filtredBadges = []
-                for(let i in this.badges){
-                    if(this.badges[i].num.startsWith(this.researchBadge)) this.filtredBadges.push(this.badges[i])
-                }
-                return 
-                this.filtredBadges = this.badges.filter((badge) => badge.startsWith("N"))
-                console.log('oh ', this.researchBadge)
-            } else {
-                this.filtredBadges = this.badges
-            }
+    middleware: 'badges',
+    computed:{
+        badges(){
+            return this.$store.getters['badges/getBadges']
         },
+        row(){
+            return Math.floor(this.badges.length / 3)
+        },
+        filtredBadges(){
+            let filtredBadges = []
+            for(let i in this.badges){
+                if(this.researchBadge){
+                    if(this.badges[i].id.startsWith(this.researchBadge)){
+                        filtredBadges.push(this.badges[i])
+                    }
+                } else {
+                    filtredBadges.push(this.badges[i])
+                }
+            }
+            return filtredBadges
+        }
     },
     data(){
         return{
-            badges:"",
-            filtredBadges:'',
             selectedBadge:'',
             researchBadge: '',
             badgesList: true,
             popupActive1:false,
             popupActive2:false
-        }
-    },
-    computed:{
-        row(){
-            return Math.floor(this.badges.length / 3)
         }
     },
     methods:{
@@ -96,7 +85,8 @@ export default {
             this.popupActive1 = false
             this.popupActive2 = true
 
-            //chiamata axios per eliminare badge
+            //chiamata store per eliminare badge
+            this.$store.dispatch('badges/delBadge', this.selectedBadge)
 
             setTimeout(this.closeReturnHome, 1000);
         },
