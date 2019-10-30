@@ -6,7 +6,7 @@
                     <h2>Ricerca oppure seleziona il badge</h2>
                 </vs-col>
                 <vs-col vs-w="12"  vs-type="flex" vs-justify="center" vs-align="center">
-                    <div style="padding-left: 20px;padding-right: 20px;">
+                    <div style="padding-left: 20px;padding-right: 20px; padding-bottom: 30px">
                         <vs-input size="xlarge" style="width:100%" v-model="researchBadge" icon="search" icon-after="true"/>
                     </div>
                 </vs-col>
@@ -18,17 +18,22 @@
             </vs-col>
         </vs-row>
         <div v-if="popupActive1">
-            <p>Confermi che il tuo badge è</p>
-            <div class="col">
-                <vs-button class="circle">
-                    <h1 style="font-size: 54px">{{ selectedBadge }}</h1>
-                </vs-button>
-            </div>
+           <vs-col vs-w="12" style=" height: 160px;" vs-type="flex" vs-justify="center" vs-align="center">
+            <h2>Confermi che il tuo badge è  </h2>
+           </vs-col>
+            <vs-col vs-w="12" style="padding:10px;" vs-type="flex" vs-justify="center" vs-align="center">
+              <div class="col">
+                      <h1 style="font-size: 150px">{{ selectedBadge }}</h1>
+              </div>
+            </vs-col>
+            <vs-col vs-w="12" style=" padding:50px;" vs-type="flex" vs-justify="center" vs-align="center">
             <div>
-                <vs-button color="danger" @click="cancelConfirm" size="large" style="width: 120px">NO</vs-button>
-                <vs-button color="success" @click="deleteBadge" size="large" style="width: 120px">SI</vs-button>
+                <vs-button color="danger" @click="cancelConfirm" size="large" style="font-size:40px; height:150px;width: 350px">NO</vs-button>
+                <vs-button color="success" @click="deleteBadge" size="large" style="font-size:40px; height:150px;width: 350px">SI</vs-button>
             </div>
+         </vs-col>
         </div>
+        
         <div v-if="popupActive2">
             <h1>///////Saluto Generale\\\\\\\</h1> 
         </div>

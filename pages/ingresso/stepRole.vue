@@ -40,7 +40,7 @@
                 size="large" 
                 icon="clear"
                 @click="goBack()"
-                type="filled">Annulla
+                type="filled">Indietro
                 </vs-button>
             </vs-col>
             <vs-col vs-w="3"></vs-col>
@@ -49,7 +49,7 @@
                     color="grey"
                     size="large" 
                     style="width: 95%; "
-                    icon="done"
+                    icon="fast_forward"
                     @click="confirmBadge()" 
                     type="filled">
                     Skip
