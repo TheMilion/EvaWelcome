@@ -44,7 +44,7 @@
             <vs-col  vs-w="12" align="center" style="margin-top: 30px">
                 <p style="color: red; padding-bottom:10px;">{{errorprivacyCheck}}</p>
                 <vs-checkbox class="checkPrivacy" style="max-width:170px; padding-bottom:10px;" size="large" v-model="privacyCheck">Conferma Privacy</vs-checkbox>
-                <p  style="max-width:300px">Confermando dichiari di aver letto 
+                <p  style="max-width:760px">Confermando dichiari di aver letto 
                     e accetti integralmente le nostre Condizioni generali 
                     di uso e vendita. Prendi visione della nostra Informativa sulla privacy, 
                     della nostra Informativa sui Cookie</p>

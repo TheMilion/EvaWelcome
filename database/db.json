@@ -1,17 +1,13 @@
 {
   "badges": [
     {
-      "id": "2",
-      "idUser": 101
-    },
-    {
-      "id": "5",
-      "idUser": 101
+      "id": 1,
+      "idUser": 4
     }
   ],
   "users": [
     {
-      "id": 101,
+      "id": 1,
       "nome": "Luigi",
       "cognome": "Minauda",
       "entrata": {
@@ -20,7 +16,79 @@
       },
       "uscita": {
         "data": "30-10-2019",
-        "ora": "14:4:31"
+        "ora": "16:17:6"
+      }
+    },
+    {
+      "id": 2,
+      "nome": "Giuseppe",
+      "cognome": "Marinelli",
+      "email": "",
+      "numtel": "",
+      "ruolo": "candidato_colloquio",
+      "motivo": "info",
+      "descrizione": "Ciao Mondo",
+      "entrata": {
+        "data": "30-10-2019",
+        "ora": "16:8:30"
+      },
+      "uscita": {
+        "data": "30-10-2019",
+        "ora": "16:14:27"
+      }
+    },
+    {
+      "id": 3,
+      "nome": "a",
+      "cognome": "a",
+      "email": "",
+      "numtel": "",
+      "ruolo": "collaboratore_esterno",
+      "motivo": "pagamento_saldo",
+      "descrizione": "",
+      "entrata": {
+        "data": "30-10-2019",
+        "ora": "16:14:49"
+      },
+      "uscita": {
+        "data": "30-10-2019",
+        "ora": "16:17:2"
+      }
+    },
+    {
+      "id": 4,
+      "nome": "asdasdasd",
+      "cognome": "asdasd",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "30-10-2019",
+        "ora": "16:18:15"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    },
+    {
+      "id": 5,
+      "nome": "adsasdasd",
+      "cognome": "asdasdasd",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "asdasdasasdsd",
+      "entrata": {
+        "data": "30-10-2019",
+        "ora": "16:18:53"
+      },
+      "uscita": {
+        "data": "30-10-2019",
+        "ora": "16:19:5"
       }
     }
   ]
