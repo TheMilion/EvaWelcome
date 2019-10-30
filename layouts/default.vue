@@ -7,13 +7,13 @@
       <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center"></vs-col>
       <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
         <vs-button 
-                      color="grey" 
-                      size="large" 
-                      style="width: 100%;"
-                      icon="home"
-                      to="/"
-                      type="filled">Home
-                      </vs-button>
+          color="grey" 
+          size="large" 
+          style="width: 100%;"
+          icon="home"
+          to="/"
+          type="flat"
+        >&nbsp;</vs-button>
       </vs-col>
     </vs-row>
     <div class="nuxtchild">

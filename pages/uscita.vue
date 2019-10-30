@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <vs-row v-if="badgesList" style="margin-top: 20px;">
+        <vs-row v-if="badgesList">
             <vs-row>
-                <vs-col vs-w="12">
+                <vs-col vs-w="12" style=" height: 160px;" vs-type="flex" vs-justify="center" vs-align="center">
                     <h2>Ricerca oppure seleziona il badge</h2>
-                    <div class="col" style="padding-left: 40%;padding-right: 40%;">
-                        <vs-input size="large" style="width:90%" v-model="researchBadge" icon="search" icon-after="true"/>
+                </vs-col>
+                <vs-col vs-w="12"  vs-type="flex" vs-justify="center" vs-align="center">
+                    <div style="padding-left: 20px;padding-right: 20px;">
+                        <vs-input size="xlarge" style="width:100%" v-model="researchBadge" icon="search" icon-after="true"/>
                     </div>
                 </vs-col>
             </vs-row>
@@ -45,10 +47,10 @@ export default {
             return Math.floor(this.badges.length / 3)
         },
         filtredBadges(){
-            let filtredBadges = []
+            let filtredBadges = [];
             for(let i in this.badges){
                 if(this.researchBadge){
-                    if(this.badges[i].id.startsWith(this.researchBadge)){
+                    if(this.badges[i].id.toString().startsWith(this.researchBadge)){
                         filtredBadges.push(this.badges[i])
                     }
                 } else {
@@ -102,9 +104,7 @@ export default {
 
 <style scoped>
     .container {
-        padding: 10px;
-        margin: 0 auto;
-        min-height: 100vh;
+        min-height: calc(100vh - 170px);
         display: block;
         justify-content: center;
         align-items: center;
