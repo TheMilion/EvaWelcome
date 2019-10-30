@@ -1,0 +1,27 @@
+{
+  "badges": [
+    {
+      "id": "2",
+      "idUser": 101
+    },
+    {
+      "id": "5",
+      "idUser": 101
+    }
+  ],
+  "users": [
+    {
+      "id": 101,
+      "nome": "Luigi",
+      "cognome": "Minauda",
+      "entrata": {
+        "data": "29-10-2019",
+        "ora": "9:30"
+      },
+      "uscita": {
+        "data": "30-10-2019",
+        "ora": "14:4:31"
+      }
+    }
+  ]
+}
