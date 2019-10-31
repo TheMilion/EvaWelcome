@@ -1,89 +1,11 @@
 {
-  "badges": [
+  "badges": [],
+  "admin": [
     {
       "id": 1,
-      "idUser": 1
-    },
-    {
-      "id": 4,
-      "idUser": 2
-    },
-    {
-      "id": 8,
-      "idUser": 3
-    },
-    {
-      "id": 9,
-      "idUser": 4
+      "username": "admin",
+      "password": "admin"
     }
   ],
-  "users": [
-    {
-      "id": 1,
-      "nome": "Luigi",
-      "cognome": "Minauda",
-      "entrata": {
-        "data": "29-10-2019",
-        "ora": "9:30"
-      },
-      "uscita": {
-        "data": "31-10-2019",
-        "ora": "9:5:19"
-      }
-    },
-    {
-      "id": 2,
-      "nome": "asdasd",
-      "cognome": "asdasdad",
-      "email": "",
-      "numtel": "",
-      "ruolo": "collaboratore_esterno",
-      "motivo": "pagamento_saldo",
-      "descrizione": "",
-      "entrata": {
-        "data": "30-10-2019",
-        "ora": "17:54:40"
-      },
-      "uscita": {
-        "data": null,
-        "ora": null
-      }
-    },
-    {
-      "id": 3,
-      "nome": "Luigi",
-      "cognome": "Minauda",
-      "email": "",
-      "numtel": "",
-      "ruolo": "agente",
-      "motivo": "non_definito",
-      "descrizione": "",
-      "entrata": {
-        "data": "31-10-2019",
-        "ora": "9:5:44"
-      },
-      "uscita": {
-        "data": null,
-        "ora": null
-      }
-    },
-    {
-      "id": 4,
-      "nome": "aa",
-      "cognome": "aa",
-      "email": "",
-      "numtel": "",
-      "ruolo": "visitatore",
-      "motivo": "non_definito",
-      "descrizione": "",
-      "entrata": {
-        "data": "31-10-2019",
-        "ora": "9:33:13"
-      },
-      "uscita": {
-        "data": null,
-        "ora": null
-      }
-    }
-  ]
+  "users": []
 }

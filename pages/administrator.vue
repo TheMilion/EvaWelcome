@@ -1,7 +1,13 @@
 <template>
 <nuxt-child />
 </template>
-<style>
+<script>
+export default {
+    layout: 'admin',
+    middleware: 'admin'
+}
+</script>
+<style >
 .bodyPage{
 height: calc(100vh - 340px);  
 }

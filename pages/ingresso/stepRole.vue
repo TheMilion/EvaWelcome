@@ -176,6 +176,7 @@ export default {
                         ruolo: this.userDetails.ruoloSelect,
                         motivo: this.userDetails.motivoSelect,
                         descrizione: this.userDetails.textarea,
+                        badge: idB,
                         entrata: {
                             data: this.date,
                             ora: this.time,
