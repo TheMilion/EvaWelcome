@@ -2,18 +2,25 @@
   <div class="container">
     <vs-row style="min-width: 90vw;">
       <vs-col vs-w="4" style="padding: 30px;" vs-type="flex" vs-justify="center" vs-align="center">
-        <vs-input type="date" v-model="data"></vs-input>
+        <vs-input 
+        label="Seleziona data"
+        style="width:80%;"
+        size="large" 
+        type="date" 
+        v-model="data"></vs-input>
       </vs-col>
       <vs-col vs-w="4" style="padding: 30px;" vs-type="flex" vs-justify="center" vs-align="center">
-        <vs-button @click="data=''">Mostra tutti gli utenti</vs-button>
+        
+        <vs-button style="margin-top:25px;margin-right:5px" @click="data=getCurrentDate()">Mostra Oggi</vs-button>
+        <vs-button style="margin-top:25px;" @click="data=''">Mostra tutti gli utenti</vs-button>
       </vs-col>
-      <vs-col vs-w="4" style="padding: 30px;" vs-type="flex" vs-justify="center" vs-align="center">
+      <vs-col vs-w="4" style="margin-top:25px; padding: 30px;" vs-type="flex" vs-justify="center" vs-align="center">
         <vs-button to="/administrator/createBadge">Aggiungi utente</vs-button>
       </vs-col>
     </vs-row>
     <vs-row>
       <vs-col vs-w="12" style="padding:30px;" vs-type="flex" vs-justify="center" vs-align="center">
-        <vs-table stripe search pagination max-items="10" :data="users" style="min-width: 80vw;">
+        <vs-table stripe search pagination max-items="7" :data="users" style="min-width: 80vw;">
           <template slot="header">
             <h3>Utenti</h3>
           </template>
@@ -25,14 +32,14 @@
             <vs-th sort-key="ruolo">Ruolo</vs-th>
             <vs-th sort-key="motivo">Motivo</vs-th>
             <vs-th sort-key="badge">Badge</vs-th>
-            <vs-th sort-key="entrata">Entrata</vs-th>
-            <vs-th sort-key="uscita">Uscita</vs-th>
+            <vs-th sort-key="ts_entrata">Entrata</vs-th>
+            <vs-th sort-key="ts_uscita">Uscita</vs-th>
             <vs-th>Azioni</vs-th>
             
           </template>
           <template v-if="users" slot-scope="{data}">
             <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-              <vs-td>
+              <vs-td style="padding:20px !important">
                 {{data[indextr].nome}}
               </vs-td>
               <vs-td>
@@ -71,6 +78,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   middleware: 'badges',
   data(){
@@ -106,17 +114,31 @@ export default {
       this.getUsers()
     },
 
+    getCurrentDate(){
+    let today = new Date();
+    return  (today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate())
+    },
+
+
     async getUsers(){
       let queryString = ''
       if(this.data!="") queryString = '?entrata.data='+this.choosedData 
       await this.$axios.$get('http://localhost:80/users'+queryString)
       .then(res=>{
-        this.users = res
-      })
+       this.users = res.map(el => {
+         return {
+           ...el,
+           ts_entrata:  moment(el.entrata.data + ' ' + el.entrata.ora, 'DD-MM-YYYY HH:mm:ss').unix(),
+           ts_uscita:  (!el.uscita) ? 0 : moment(el.uscita.data + ' ' + el.uscita.ora, 'DD-MM-YYYY HH:mm:ss').unix()
+         }
+       })
+     })
       .catch(e=>{
         console.log(e)
       })
     }
+
+
   }
 }
 </script>

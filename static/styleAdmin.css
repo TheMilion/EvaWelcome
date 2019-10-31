@@ -8,3 +8,6 @@
 .vuesax-app-is-ltr .vs-select--label {font-size: 15px;}
 .vs-textarea {height:110px; font-size:1.2rem !important;}
 .vs-con-textarea h4 {font-size: 1rem !important;}
+.vs-table--search-input {padding: 20px  !important; }
+.vuesax-app-is-ltr .vs-table--search-input {padding-left: 30px !important;}
+.vs-button-flat:hover{background: transparent !important;}

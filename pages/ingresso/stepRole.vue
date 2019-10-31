@@ -144,15 +144,15 @@ export default {
                         }
                     }
                     idB = count + 1
-                    if(idB > 10){
-                        for(var i = 1; i<10; i++){
+                    if(idB > 50){
+                        for(var i = 1; i<50; i++){
                             if(allBadge[i-1].id != i){
                                 idB = i
                                 //console.log(idB)
                                 break;
                             }
                         }
-                        if(idB > 10) 
+                        if(idB > 50) 
                         {
                             alert("non ci sono badge disponibili, ci scusiamo per il disagio")
                             return this.$router.push("/")

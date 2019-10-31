@@ -2,7 +2,7 @@
   <div class="allPage">
     <vs-row style="height: 50px">
       <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
-        EvaEnergyService
+        <img style="height:100px" src="/logo.png">
       </vs-col>
       <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center"></vs-col>
       <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
@@ -71,6 +71,7 @@ html {
 }
 .allPage{
 padding:20px;
+
 }
 
 

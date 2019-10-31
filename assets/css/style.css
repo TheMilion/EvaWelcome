@@ -8,12 +8,8 @@
 .vuesax-app-is-ltr .vs-select--label {font-size: 20px;}
 .vs-textarea {height:150px; font-size:1.5rem !important;}
 .vs-con-textarea h4 {font-size: 1rem !important;}
-<<<<<<< HEAD
-.vs-input--icon, .vs-icon {height: 60px !important;width: 80px !important;font-size: 70px !important;}
 .vs-checkbox {width: 48px !important;height: 48px !important;}
 .vs-checkbox--icon {width: 16px !important;height: 44px !important; font-size: 52px !important;}
 .vs-button-flat:hover {background: transparent !important;}
-=======
 .vs-input--icon, .vs-icon {height: 60px !important;width: 80px !important;font-size: 70px !important}
 .vs-button-flat:hover{background: transparent !important;}
->>>>>>> 50ed232e96ff07e8d16aa73401c880dd6223892c
