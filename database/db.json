@@ -2,7 +2,14 @@
   "badges": [
     {
       "id": 1,
-      "idUser": 1
+      "idUser": 10
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "superuser"
     }
   ],
   "users": [
@@ -15,26 +22,170 @@
         "ora": "9:30"
       },
       "uscita": {
-        "data": null,
-        "ora": null
+        "data": "31-10-2019",
+        "ora": "10:29:18"
       }
     },
     {
       "id": 2,
-      "nome": "asdasd",
-      "cognome": "asdasdad",
-      "email": "",
-      "numtel": "",
-      "ruolo": "collaboratore_esterno",
-      "motivo": "pagamento_saldo",
+      "nome": "asda",
+      "cognome": "sdasdasd",
+      "email": "asdasd",
+      "numtel": "asdasd",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
       "descrizione": "",
       "entrata": {
-        "data": "30-10-2019",
-        "ora": "17:54:40"
+        "data": "31-10-2019",
+        "ora": "11:41:53"
       },
       "uscita": {
-        "data": "30-10-2019",
-        "ora": "17:54:43"
+        "data": "31-10-2019",
+        "ora": "11:41:59"
+      }
+    },
+    {
+      "id": 3,
+      "nome": "asdasdas",
+      "cognome": "dasdasd",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:43:8"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:43:25"
+      }
+    },
+    {
+      "id": 4,
+      "nome": "asdasd",
+      "cognome": "asdasdasda",
+      "email": "sdadasd",
+      "numtel": "",
+      "ruolo": "candidato_colloquio",
+      "motivo": "colloquio",
+      "descrizione": "ciao abnasdasndlasd",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:47:25"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:52:29"
+      }
+    },
+    {
+      "id": 5,
+      "nome": "asd",
+      "cognome": "asd",
+      "email": "dasd",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "asdasd",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:47:51"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:48:9"
+      }
+    },
+    {
+      "id": 6,
+      "nome": "asd",
+      "cognome": "asdasdasd",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:54:1"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:54:5"
+      }
+    },
+    {
+      "id": 7,
+      "nome": "123123",
+      "cognome": "123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:54:28"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:54:42"
+      }
+    },
+    {
+      "id": 8,
+      "nome": "123",
+      "cognome": "123",
+      "email": "1123",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:55:26"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:57:9"
+      }
+    },
+    {
+      "id": 9,
+      "nome": "asdasda",
+      "cognome": "sadasd",
+      "email": "asdasdsad",
+      "numtel": "asdasdsd",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:57:3"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:57:7"
+      }
+    },
+    {
+      "id": 10,
+      "nome": "213123",
+      "cognome": "213123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "entrata": {
+        "data": "31-10-2019",
+        "ora": "11:59:2"
+      },
+      "uscita": {
+        "data": "31-10-2019",
+        "ora": "11:59:5"
       }
     }
   ]
