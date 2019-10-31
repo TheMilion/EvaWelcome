@@ -23,7 +23,7 @@ export default function(context){
         }
     }
         /*
-        console.log(app.router.history.current.name)
+        //console.log(app.router.history.current.name)
         switch(app.router.history.current.name){
             case 'index' : app.store.commit('currentPage/setState', 'Home')
             break;

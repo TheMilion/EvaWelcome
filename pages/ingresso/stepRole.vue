@@ -148,7 +148,7 @@ export default {
                         for(var i = 1; i<10; i++){
                             if(allBadge[i-1].id != i){
                                 idB = i
-                                console.log(idB)
+                                //console.log(idB)
                                 break;
                             }
                         }
@@ -200,12 +200,10 @@ export default {
                     .catch(e=>{
                         console.log(e)
                     })
-                }).catch(e=>{
+                })
+                .catch(e=>{
                     console.log(e)
-                }
-
-                )
-
+                })
             })
             .catch(e=>{
                 console.log(e)

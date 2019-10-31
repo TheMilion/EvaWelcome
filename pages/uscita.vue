@@ -3,11 +3,11 @@
         <vs-row v-if="badgesList">
             <vs-row>
                 <vs-col vs-w="12" style=" height: 160px;" vs-type="flex" vs-justify="center" vs-align="center">
-                    <h2>Ricerca oppure seleziona il badge</h2>
+                    <h2 style="font-size: 54px">Ricerca oppure seleziona il badge</h2>
                 </vs-col>
-                <vs-col vs-w="12"  vs-type="flex" vs-justify="center" vs-align="center">
+                <vs-col vs-w="12" vs-type="flex" vs-justify="center" vs-align="center">
                     <div style="padding-left: 20px;padding-right: 20px; padding-bottom: 30px">
-                        <vs-input size="xlarge" style="width:100%" v-model="researchBadge" icon="search" icon-after="true"/>
+                        <vs-input type="number" size="xlarge" style="width:100%" v-model="researchBadge" icon="search" icon-after="true"/>
                     </div>
                 </vs-col>
             </vs-row>
@@ -16,6 +16,9 @@
                     <h1 style="font-size: 54px">{{ badge.id }}</h1>
                 </vs-button>
             </vs-col>
+            <vs-col v-show="filtredBadges==0" vs-w="12" vs-type="flex" vs-justify="center" vs-align="center">
+                <h1 style="font-size: 48px">Non ci sono badge</h1>
+            </vs-col>
         </vs-row>
         <div v-if="popupActive1">
            <vs-col vs-w="12" style=" height: 160px;" vs-type="flex" vs-justify="center" vs-align="center">
@@ -23,7 +26,7 @@
            </vs-col>
             <vs-col vs-w="12" style="padding:10px;" vs-type="flex" vs-justify="center" vs-align="center">
               <div class="col">
-                      <h1 style="font-size: 150px">{{ selectedBadge }}</h1>
+                    <h1 style="font-size: 150px">{{ selectedBadge }}</h1>
               </div>
             </vs-col>
             <vs-col vs-w="12" style=" padding:50px;" vs-type="flex" vs-justify="center" vs-align="center">
@@ -33,9 +36,10 @@
             </div>
          </vs-col>
         </div>
-        
         <div v-if="popupActive2">
-            <h1>///////Saluto Generale\\\\\\\</h1> 
+            <vs-col vs-w="12" style="padding:150px;" vs-type="flex" vs-justify="center" vs-align="center">
+                <h1 style="font-size: 48px">Uscita confermata <br> grazie per la disponibilità. <br> <br> Vi ricordiamo di consegnare il badge in segreteria</h1>
+            </vs-col>        
         </div>
     </div>
 </template>
@@ -95,7 +99,7 @@ export default {
             //chiamata store per eliminare badge
             this.$store.dispatch('badges/delBadge', this.selectedBadge)
 
-            setTimeout(this.closeReturnHome, 1000);
+            setTimeout(this.closeReturnHome, 4000);
         },
         closeReturnHome(){
             this.popupActive1 = false
