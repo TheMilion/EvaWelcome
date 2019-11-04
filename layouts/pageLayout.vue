@@ -1,12 +1,12 @@
 <template>
   <div class="allPage">
-    <vs-row style="height: 50px">
+    <vs-row class="topnavBar">
       <vs-col vs-w="3" vs-type="flex" vs-justify="left" vs-align="center">
-        <img style="height:100px" src="/logo.png">
+        <img src="/logo.png">
       </vs-col>
       <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center"></vs-col>
       <vs-col vs-w="3" vs-type="flex" vs-justify="flex-end" vs-align="center" >
-        <nuxt-link to="/"><vs-icon icon="home" size="75px" style="margin-right:40px" color="#BC1254"></vs-icon></nuxt-link>
+        <nuxt-link to="/"><vs-icon icon="home" size="75px" color="#BC1254" style="margin-right:40px"></vs-icon></nuxt-link>
       </vs-col>
     </vs-row>
     <div class="nuxtchild">
@@ -34,7 +34,7 @@ export default {
        link: [
       {
         rel: "stylesheet",
-        href: "style.css"
+        href: "../style.css"
       }
     ]
       
@@ -57,19 +57,29 @@ html {
 }
 
 .nuxtchild{
-    height: calc(100vh - 90px);
+  
+    margin-top:30px; 
+    margin-right:100px;
+    margin-left:100px;
+    padding:20px;
+    background-color:rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    height: calc(100vh - 280px);
     display: flex;
     flex-direction: column;
-    
+    box-shadow: 0 4px 25px 0 rgba(0,0,0,.8);
+}
+.topnavBar{
+    height: 100px;
 }
 .allPage{
-padding:20px;
+height:100vh;
 background: url('/backgroundAllPage.png')   no-repeat center center fixed ; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  
 }
-
 
 </style>

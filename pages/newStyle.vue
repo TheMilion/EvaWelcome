@@ -39,39 +39,40 @@
                     v-model="formAnagrafica.numtel"/>
                 </div>
             </vs-col>
-        </vs-row>
-        <vs-row style="padding:20px">
-            <vs-col  vs-w="3" align="left">
-                <vs-checkbox  color="#BC1254" class="checkPrivacy" style=" max-width:200px; padding-bottom:10px;" size="large" v-model="privacyCheck"><b>Conferma Privacy</b></vs-checkbox>
+            <vs-col  vs-w="6" align="center">
+                <vs-checkbox class="checkPrivacy" style="max-width:170px; padding-bottom:10px;" size="large" v-model="privacyCheck">Conferma Privacy</vs-checkbox>
+                <p style="color: red; padding-bottom:10px;">{{errorprivacyCheck}}</p>
             </vs-col>
-            <vs-col  vs-w="9" align="left">
-                <p >Confermando dichiari di aver letto 
+            <vs-col  vs-w="6" align="center">
+                <b >Confermando dichiari di aver letto 
                     e accetti integralmente le nostre Condizioni generali 
                     di uso e vendita. Prendi visione della nostra Informativa sulla privacy, 
-                    della nostra Informativa sui Cookie</p>
-            </vs-col>
-            <vs-col vs-w= "12" align="center">
-            <div style="height:15px;"><b style="color: red; padding-bottom:10px;">{{errorprivacyCheck}}</b></div>
+                    della nostra Informativa sui Cookie</b>
+                
             </vs-col>
         </vs-row>  
         </div>
-        <div class="footerText" style="margin-top:46px;">
+        <div class="footerText" style="margin-top:75px;">
             <vs-row>
                 <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-                    <nuxt-link to="/">
-                    <u style="color:#BC1254; font-size:20px">Indietro</u>
-                    </nuxt-link>
+                    <vs-button 
+                    color="danger" 
+                    size="large" 
+                    style="width: 100%;"
+                    icon="clear"
+                    to="/"
+                    type="filled">Annulla
+                    </vs-button>
                 </vs-col>
                 <vs-col vs-w="6"></vs-col>
                 <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
                     <vs-button 
-                    color="#BC1254" 
+                    color="success" 
                     size="large" 
                     style="width: 100%;"
-                    icon="arrow_forward"
-                    icon-after
+                    icon="done"
                     @click="checkAnagrafica" 
-                    type="filled">Avanti
+                    type="filled">Conferma
                     </vs-button>
                 </vs-col>
             </vs-row>
@@ -81,7 +82,7 @@
 <script>
 export default {
     middleware: 'info',
-    layout: 'pageLayout',
+    layout: "pageLayout",
     computed: {
         MyUser() {
             return this.$store.getters['user/getUser']}

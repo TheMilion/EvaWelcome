@@ -19,7 +19,7 @@
       </vs-col>
     </vs-row>
     <vs-row>
-      <vs-col vs-w="12" style="padding:30px;" vs-type="flex" vs-justify="center" vs-align="center">
+      <vs-col vs-w="12" >
         <vs-table stripe search pagination max-items="7" :data="users" style="min-width: 80vw;">
           <template slot="header">
             <h3>Utenti</h3>
@@ -27,29 +27,20 @@
           <template slot="thead">
             <vs-th sort-key="nome">Nome</vs-th>
             <vs-th sort-key="cognome">Cognome</vs-th>
-            <vs-th sort-key="email">Email</vs-th>
-            <vs-th sort-key="numtel">Cell</vs-th>
             <vs-th sort-key="ruolo">Ruolo</vs-th>
             <vs-th sort-key="motivo">Motivo</vs-th>
             <vs-th sort-key="badge">Badge</vs-th>
             <vs-th sort-key="ts_entrata">Entrata</vs-th>
             <vs-th sort-key="ts_uscita">Uscita</vs-th>
             <vs-th>Azioni</vs-th>
-            
           </template>
           <template v-if="users" slot-scope="{data}">
-            <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-              <vs-td style="padding:20px !important">
+            <vs-tr :key="indextr" v-for="(tr, indextr) in data" align="left">
+              <vs-td >
                 {{data[indextr].nome}}
               </vs-td>
               <vs-td>
                 {{data[indextr].cognome}}
-              </vs-td>
-              <vs-td>
-                {{data[indextr].email}}
-              </vs-td>
-              <vs-td>
-                {{data[indextr].numtel}}
               </vs-td>
               <vs-td>
                 {{data[indextr].ruolo}}
@@ -67,8 +58,16 @@
                 {{data[indextr].uscita.data}} {{data[indextr].uscita.ora}}
               </vs-td>
               <vs-td>
-                <vs-button v-if="!data[indextr].uscita.data" @click="unlockBadge(data[indextr].badge)">Sblocca</vs-button>
+                <vs-button color="warning" v-if="!data[indextr].uscita.data" @click.prevent.stop="unlockBadge(data[indextr].badge)">Sblocca</vs-button>
+                <vs-button color="danger" v-else @click.prevent.stop="deleteUser(data[indextr].id)">Elimina</vs-button>
               </vs-td>
+              <template class="expand-user" slot="expand">
+                  <vs-list>
+                    <vs-list-item icon="mail" title="Email" :subtitle="data[indextr].email"></vs-list-item>
+                    <vs-list-item icon="call" title="Telefono" :subtitle="data[indextr].numtel"></vs-list-item>
+                    <vs-list-item icon="ballot" title="Descrizione" :subtitle="data[indextr].descrizione"></vs-list-item>
+                  </vs-list>
+              </template>
             </vs-tr>
           </template>
         </vs-table> 
@@ -105,9 +104,23 @@ export default {
     else this.$router.push("/administrator")
   },
   methods:{
+
+    async deleteUser(id){
+      console.log(id)
+      await this.$axios.delete('http://localhost:80/users/'+id+'/')
+      .then(res =>{
+        this.getUsers()
+        this.$vs.notify({title:'Utente Cancellato',text:'Utente Cancellato correttamente',color:'danger'})
+      })
+      .catch(e =>{
+        console.log(e)
+      })
+    },
     async unlockBadge(badge){
       await this.$store.dispatch('badges/delBadge', badge)
       this.getUsers()
+      this.$vs.notify({title:'Badge Sbloccato',text:'Badge sbloccato correttamente',color:'warning'})
+                            
     },
     getCurrentDate(){
     return  moment().format("MM-DD-YYYY")

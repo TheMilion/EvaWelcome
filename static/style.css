@@ -6,9 +6,11 @@
 .vuesax-app-is-ltr .vs-select--input {padding:1.3rem; font-size:20px}
 .vs-select--item {font-size:20px}
 .vuesax-app-is-ltr .vs-select--label {font-size: 20px;}
-.vs-textarea {height:150px; font-size:1.5rem !important;}
+.vs-textarea {height:150px; font-size:1.5rem !important; background-color: white;}
 .vs-con-textarea h4 {font-size: 1rem !important;}
-.vs-input--icon, .vs-icon {height: 60px !important;width: 80px !important;font-size: 70px !important}
+.vs-input--icon, .vs-icon {    margin-top: -10px; height: 60px !important;width: 80px !important;font-size: 70px !important}
 .vs-button-flat:hover{background: transparent !important;}
 .vs-checkbox {width: 48px !important;height: 48px !important;}
-.vs-checkbox--icon {width: 16px !important;height: 44px !important; font-size: 52px !important;}
+.vs-checkbox--icon {width: 42px !important;height: 60px !important; font-size: 52px !important;}
+.span-text-validation-danger{display: none !important;}
+#input ~ i {margin-top: 1px !important;}

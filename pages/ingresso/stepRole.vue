@@ -1,10 +1,11 @@
 <template>
 <div>
-    <div class="topPage" style="padding:30px" align="center">
+    <div class="headerText" align="center">
             <h2>{{MyUser.nome}} {{MyUser.cognome}}</h2><br>
             <h3>Seleziona il tuo ruolo e indica il motivo della tua visita</h3>
-    </div>
-    <div class="bodyPage">
+        </div>
+
+    <div class="bodyText">
         <vs-row>
             <!--Ruolo-->
             <vs-col style="padding:25px" vs-w="6">
@@ -31,40 +32,22 @@
             </vs-col>
         </vs-row>
     </div>
-    <div class="footerPage">
+    <div class="footerText" style="margin-top:47px;">
         <vs-row>
             <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-                <vs-button 
-                color="danger" 
-                style="width: 100%;"
-                size="large" 
-                icon="clear"
-                @click="goBack()"
-                type="filled">Indietro
-                </vs-button>
+                    <u @click="goBack()" style="color:#BC1254; cursor:pointer;  margin-top:1px; font-size:20px">Indietro</u>
             </vs-col>
-            <vs-col vs-w="3"></vs-col>
-            <vs-col vs-w="3">
-                <vs-button 
-                    color="grey"
-                    size="large" 
-                    style="width: 95%; "
-                    icon="fast_forward"
-                    @click="confirmBadge()" 
-                    type="filled">
-                    Skip
-                    </vs-button>
-            </vs-col>
+            <vs-col vs-w="6"></vs-col>
             <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
                 <vs-button 
-                color="success"
-                size="large" 
-                style="width: 100%;"
-                icon="done"
-                @click="confirmBadge()" 
-                type="filled">
-                Ottieni ora il tuo badge
-                </vs-button>
+                    color="#BC1254" 
+                    size="large" 
+                    style="width: 100%;"
+                    icon="arrow_forward"
+                    icon-after
+                    @click="confirmBadge()" 
+                    type="filled">Avanti
+                    </vs-button>
             </vs-col>
         </vs-row>
     </div>

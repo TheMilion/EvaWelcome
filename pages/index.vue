@@ -27,9 +27,12 @@
 <script>
 export default {
 middleware: 'info',
+layout: 'default',
 mounted(){
   this.$cookies.remove("userTemp")
   this.$cookies.remove("userTempDetails")
+  clearTimeout(window.welcome)
+  window.welcome =  null
 }
 }
 </script>

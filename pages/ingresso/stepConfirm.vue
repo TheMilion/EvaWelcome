@@ -1,22 +1,21 @@
 <template>
 <div>
-    <div class="topPage" style="padding:30px" align="center">
+    <div class="headerText" align="center">
             <h2>Grazie per la tua pazienza<br>Ecco il tuo numero</h2>
     </div>
-    <div class="bodyPage">
+    <div class="bodyText">
         <div align="center">
         <p style="font-size:250px">{{this.$route.query.num}}</p>
         </div> 
     </div>
-    <div class="footerPage">
+    <div class="footerText" style="margin-top:125px;">
         <vs-row>
             <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-               
             </vs-col>
             <vs-col vs-w="6"></vs-col>
             <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
                 <vs-button 
-                color="success"
+                color="#BC1254"
                 size="large" 
                 style="width: 100%;"
                 icon="done"
@@ -49,7 +48,7 @@ export default {
                 this.$store.commit('user/setState', {})
                 this.$cookies.remove("userTempDetails")
                 this.$store.commit('userDetails/setState', {})
-                setTimeout(this.closeReturnHome, 120000);
+                window.welcome = setTimeout(this.closeReturnHome, 12000);
             }
     },
     methods: {

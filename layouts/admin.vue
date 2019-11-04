@@ -5,24 +5,12 @@
           <img style="height:70px" src="/logo.png">
       </vs-col>
       <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center">
-             <vs-button 
-          v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)"
-          color="grey" 
-          size="large" 
-          style="width: 100%;"
-          icon="home"
-          to="/administrator/home"
-          type="flat"
-        >&nbsp;</vs-button>
-        <vs-button 
-          v-else
-          color="grey" 
-          size="large" 
-          style="width: 100%;"
-          icon="home"
-          to="/administrator"
-          type="flat"
-        >&nbsp;</vs-button>
+        <span v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)">
+        <nuxt-link to="/administrator/home"><vs-icon icon="home" size="55px" color="#BC1254"></vs-icon></nuxt-link>
+        </span>
+        <span v-else >
+        <nuxt-link to="/administrator"><vs-icon icon="home" size="55px" color="#BC1254"></vs-icon></nuxt-link>
+        </span>
       </vs-col>
       <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
         <vs-button v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)" @click="logout()">Effettua il Logout</vs-button>
