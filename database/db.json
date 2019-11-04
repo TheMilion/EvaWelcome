@@ -1,5 +1,10 @@
 {
-  "badges": [],
+  "badges": [
+    {
+      "id": 1,
+      "idUser": 1
+    }
+  ],
   "admin": [
     {
       "id": 1,
@@ -7,5 +12,25 @@
       "password": "admin"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "nome": "Luigi",
+      "cognome": "Minauda",
+      "email": "",
+      "numtel": "",
+      "ruolo": "agente",
+      "motivo": "meetings",
+      "descrizione": "",
+      "badge": 1,
+      "entrata": {
+        "data": "4-11-2019",
+        "ora": "9:8:57"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    }
+  ]
 }

@@ -25,8 +25,8 @@
             <vs-th sort-key="ruolo">Ruolo</vs-th>
             <vs-th sort-key="motivo">Motivo</vs-th>
             <vs-th sort-key="badge">Badge</vs-th>
-            <vs-th sort-key="entrata">Entrata</vs-th>
-            <vs-th sort-key="uscita">Uscita</vs-th>
+            <vs-th sort-key="ts_entrata">Entrata</vs-th>
+            <vs-th sort-key="ts_uscita">Uscita</vs-th>
             <vs-th>Azioni</vs-th>
             
           </template>
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   middleware: 'badges',
   data(){
@@ -82,9 +83,8 @@ export default {
   },
   computed:{
     choosedData(){
-      let i = this.data.split('-')
-      let date = i[2] + '-' + i[1] + '-' + i[0]
-      return date
+      this.data = moment().format("DD-MM-YYYY")
+      return this.data
     }
   },
   watch:{
@@ -96,8 +96,7 @@ export default {
     if(Object.keys(this.$store.getters['admin/getAdmin']).length != 0) console.log("ok")
     else this.$router.push("/administrator")
     this.getUsers()
-    let today = new Date();
-    this.data = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate()
+    this.data = moment().format("DD-MM-YYYY")
   },
   methods:{
     async unlockBadge(badge){
@@ -108,10 +107,16 @@ export default {
 
     async getUsers(){
       let queryString = ''
-      if(this.data!="") queryString = '?entrata.data='+this.choosedData 
+      if(this.data!="") queryString = '?entrata.data='+this.data 
       await this.$axios.$get('http://localhost:80/users'+queryString)
       .then(res=>{
-        this.users = res
+        this.users = res.map(el => {
+          return {
+            ...el,
+            ts_entrata:  moment(el.entrata.data + ' ' + el.entrata.ora, 'DD-MM-YYYY HH:mm:ss').unix(),
+            ts_uscita:  (!el.uscita) ? 0 : moment(el.uscita.data + ' ' + el.uscita.ora, 'DD-MM-YYYY HH:mm:ss').unix()
+          }
+        })
       })
       .catch(e=>{
         console.log(e)
