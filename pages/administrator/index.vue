@@ -60,9 +60,6 @@ data(){
             if(Object.keys(this.$store.getters['admin/getAdmin']).length != 0) {
               this.$router.push("/administrator/home")
             }
-            else{
-              console.log("no login")
-            }
     },
 methods: {
    blurcheckformLogin(type,error){
@@ -79,7 +76,6 @@ methods: {
                 else{this.errorformLogin[i] = false;}
             }
             if(this.counterErrorLogin == 0){
-                console.log("ciao")
               this.$axios.get('http://localhost:80/admin')
                 .then(({data})=>{
                     for(let i in data){
@@ -90,13 +86,14 @@ methods: {
                           this.$store.commit('admin/setState', {username: this.formLogin.username, token: token})
                           this.$router.push('/administrator/home')
                           }
+                          else{
+                        this.errorCode = "Errore sulla Password"
+                      }
                       }
                       else{
                         this.errorCode = "Utente non trovato correggi Username/Password"
                       }
                     }
-                    this.formLogin.username;
-                    this.formLogin.password;
                 })
                 .catch(err=>{
                     alert(err)
@@ -115,9 +112,9 @@ methods: {
   margin: 20px;
 }
 .container {
-  width: 45%;
+  width: 55%;
   margin: 0 auto;
-  min-height: 90vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -76,6 +76,7 @@
     </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
     middleware: 'info',
     data(){
@@ -123,9 +124,8 @@ export default {
             this.$router.push("/ingresso")
         },
         getCurrentDate(){
-            var today = new Date();
-            this.date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-            this.time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            this.date = moment().format("DD-MM-YYYY");
+            this.time = moment().format("HH:mm:ss");
         },
         confirmBadge(){
             this.getCurrentDate()
@@ -144,15 +144,14 @@ export default {
                         }
                     }
                     idB = count + 1
-                    if(idB > 10){
-                        for(var i = 1; i<10; i++){
+                    if(idB > 50){
+                        for(var i = 1; i<50; i++){
                             if(allBadge[i-1].id != i){
                                 idB = i
-                                //console.log(idB)
                                 break;
                             }
                         }
-                        if(idB > 10) 
+                        if(idB > 50) 
                         {
                             alert("non ci sono badge disponibili, ci scusiamo per il disagio")
                             return this.$router.push("/")

@@ -10,3 +10,5 @@
 .vs-con-textarea h4 {font-size: 1rem !important;}
 .vs-input--icon, .vs-icon {height: 60px !important;width: 80px !important;font-size: 70px !important}
 .vs-button-flat:hover{background: transparent !important;}
+.vs-checkbox {width: 48px !important;height: 48px !important;}
+.vs-checkbox--icon {width: 16px !important;height: 44px !important; font-size: 52px !important;}

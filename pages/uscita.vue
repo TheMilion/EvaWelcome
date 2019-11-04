@@ -3,7 +3,7 @@
         <vs-row v-if="badgesList">
             <vs-row>
                 <vs-col vs-w="12" style=" height: 160px;" vs-type="flex" vs-justify="center" vs-align="center">
-                    <h2 style="font-size: 54px">Ricerca oppure seleziona il badge</h2>
+                    <h2 style="font-size: 34px">Ricerca oppure seleziona il badge</h2>
                 </vs-col>
                 <vs-col vs-w="12" vs-type="flex" vs-justify="center" vs-align="center">
                     <div style="padding-left: 20px;padding-right: 20px; padding-bottom: 30px">
@@ -17,7 +17,7 @@
                 </vs-button>
             </vs-col>
             <vs-col v-show="filtredBadges==0" vs-w="12" vs-type="flex" vs-justify="center" vs-align="center">
-                <h1 style="font-size: 48px">Non ci sono badge</h1>
+                <h2>Non ci sono badge</h2>
             </vs-col>
         </vs-row>
         <div v-if="popupActive1">

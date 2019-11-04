@@ -3,7 +3,6 @@
     <div class="topPage" style="padding:10px" align="center">
         <h2>Crea Badge</h2><br>
         <vs-input 
-        type="number"
             size="large"
             label="Inserisci il numero del Badge"
             @blur="(idBadge == '' || idBadge > 50 || idBadge < 1) ? errorIdBadge =  true : errorIdBadge = false"
@@ -98,13 +97,11 @@
 </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
 middleware: 'admin',
 mounted() {
-if(Object.keys(this.$store.getters['admin/getAdmin']).length != 0) {
-    console.log("ok")
-}
-else{
+if(Object.keys(this.$store.getters['admin/getAdmin']).length == 0) {
     this.$router.push("/administrator")
 }},
 data(){
@@ -156,9 +153,8 @@ methods: {
     },
 
     getCurrentDate(){
-        var today = new Date();
-        this.date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-        this.time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        this.date = moment().format("DD-MM-YYYY");
+        this.time = moment().format("HH:mm:ss");
     },
 
     confirmBadge(){
@@ -186,12 +182,10 @@ methods: {
             .then(data=>{
                 let allBadge = data
                 allBadge.sort(function(a, b) {return a.id - b.id});
-                let idB = ''
                 for(let i in allBadge)
                     {
                         if(this.idBadge == allBadge[i].id){
                         return alert("Questo Id gia è utilizzato")}
-                        else{idB = this.idBadge}
                     }
                 this.$axios.$get('http://localhost:80/users')
                 .then(data=>{
@@ -210,7 +204,7 @@ methods: {
                         ruolo: this.userDetails.ruoloSelect,
                         motivo: this.userDetails.motivoSelect,
                         descrizione: this.userDetails.textarea,
-                        badge: idB,
+                        badge: this.idBadge,
                         entrata: {
                             data: this.date,
                             ora: this.time,
@@ -222,12 +216,12 @@ methods: {
                     })
                     .then(res=>{
                         this.$axios.$post('http://localhost:80/badges', {
-                            id: idB,
+                            id: this.idBadge,
                             idUser: idU
                         })
                         .then(res=>{
                             this.$vs.notify({title:'Success',text:'Utente registrato con successo',color:'success'})
-                            this.$router.push("/administrator")
+                            this.$router.push("/administrator/home")
                             })
                         .catch(e=>{
                             console.log(e)

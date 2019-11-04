@@ -2,24 +2,30 @@
   <div class="allPage">
     <vs-row style="height: 50px">
       <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-        EvaEnergyService
+          <img style="height:70px" src="/logo.png">
       </vs-col>
       <vs-col vs-w="6" vs-type="flex" vs-justify="center" vs-align="center">
-        <div v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)">
-        <span style="padding-right:10px">
-            <nuxt-link to="/administrator/home">
-                Home
-            </nuxt-link>
-        </span>|
-        <span style="padding-right:10px; padding-left:10px"> 
-            <nuxt-link to="/administrator/createBadge">
-                Crea Badge
-            </nuxt-link>
-            </span>
-    </div>
+             <vs-button 
+          v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)"
+          color="grey" 
+          size="large" 
+          style="width: 100%;"
+          icon="home"
+          to="/administrator/home"
+          type="flat"
+        >&nbsp;</vs-button>
+        <vs-button 
+          v-else
+          color="grey" 
+          size="large" 
+          style="width: 100%;"
+          icon="home"
+          to="/administrator"
+          type="flat"
+        >&nbsp;</vs-button>
       </vs-col>
       <vs-col vs-w="3" vs-type="flex" vs-justify="center" vs-align="center">
-        <vs-button v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)" @click="logout()">Logout</vs-button>
+        <vs-button v-if="(Object.keys(this.$store.getters['admin/getAdmin']).length != 0)" @click="logout()">Effettua il Logout</vs-button>
       </vs-col>
     </vs-row>
     <div class="nuxtchild">

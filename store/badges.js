@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 
 export const state = () => ({
     "badges":[]
@@ -24,16 +25,15 @@ export const actions={
                 let idUser = e.state.badges[i].idUser
                 await axios.get('http://localhost:80/users?id='+idUser)
                 .then(({data})=>{
-                    let today = new Date();
                     data[0].uscita = {
-                        'data': today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
-                        'ora': today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+                        'data': moment().format("DD-MM-YYYY"),
+                        'ora': moment().format("HH:mm:ss")
                     }
                     axios.put('http://localhost:80/users/'+idUser+'/', {
                         ...data[0]
                     })
-                    .catch(errore=>{
-                        console.error(errore)
+                    .catch(e=>{
+                        console.error(e)
                     })
                 })
                 .catch(err=>{
@@ -42,13 +42,9 @@ export const actions={
                 
                 e.commit('deleteBadge', i)
                 await axios.delete('http://localhost:80/badges/'+id+'/')
-                .then(res=>{
-                    console.log('badges ',res)
+                .catch(e=>{
+                    console.error(e)
                 })
-                .catch(errr=>{
-                    console.error(errr)
-                })
-                console.log(e.state.badges)
             }
         }
     }

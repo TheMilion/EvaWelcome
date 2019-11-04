@@ -6,7 +6,7 @@
           <h3>Ingresso</h3>
         </div>
         <div>
-          <span><nuxt-link to="/ingresso"><img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width:70%; padding: 20px"></nuxt-link></span>
+          <span><nuxt-link to="/ingresso"><img src="/usericon.svg" style="width:70%; padding: 20px"></nuxt-link></span>
         </div>
       </vs-card>
     </vs-col>
@@ -17,7 +17,7 @@
           <h3>Uscita</h3>
         </div>
         <div>
-      <span><nuxt-link to="/uscita"><img style="width: 70%;  padding: 20px" src="https://image.flaticon.com/icons/png/512/24/24069.png"></nuxt-link></span>
+      <span><nuxt-link to="/uscita"><img style="width: 70%;  padding: 20px" src="/logout.svg"></nuxt-link></span>
         </div>
       </vs-card>
     </vs-col>
