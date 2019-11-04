@@ -20,7 +20,7 @@
     </vs-row>
     <vs-row>
       <vs-col vs-w="12" >
-        <vs-table stripe search pagination max-items="7" :data="users" style="min-width: 80vw;">
+        <vs-table stripe search pagination max-items="7" :data="users" style="min-width: 80vw;" ref="tableUser" >
           <template slot="header">
             <h3>Utenti</h3>
           </template>
@@ -35,7 +35,7 @@
             <vs-th>Azioni</vs-th>
           </template>
           <template v-if="users" slot-scope="{data}">
-            <vs-tr :key="indextr" v-for="(tr, indextr) in data" align="left">
+            <vs-tr ref="usersList" :key="indextr" v-for="(tr, indextr) in data" align="left">
               <vs-td >
                 {{data[indextr].nome}}
               </vs-td>
@@ -59,10 +59,10 @@
               </vs-td>
               <vs-td>
                 <vs-button color="warning" v-if="!data[indextr].uscita.data" @click.prevent.stop="unlockBadge(data[indextr].badge)">Sblocca</vs-button>
-                <vs-button color="danger" v-else @click.prevent.stop="deleteUser(data[indextr].id)">Elimina</vs-button>
+                <vs-button color="danger" v-else @click.prevent.stop="$refs.usersList[indextr].collapseExpandedData(); deleteUser(data[indextr].id)">Elimina</vs-button>
               </vs-td>
               <template class="expand-user" slot="expand">
-                  <vs-list>
+                  <vs-list >
                     <vs-list-item icon="mail" title="Email" :subtitle="data[indextr].email"></vs-list-item>
                     <vs-list-item icon="call" title="Telefono" :subtitle="data[indextr].numtel"></vs-list-item>
                     <vs-list-item icon="ballot" title="Descrizione" :subtitle="data[indextr].descrizione"></vs-list-item>
@@ -107,10 +107,10 @@ export default {
 
     async deleteUser(id){
       console.log(id)
-      await this.$axios.delete('http://localhost:80/users/'+id+'/')
+      await this.$axios.delete('http://localhost:8080/users/'+id+'/')
       .then(res =>{
-        this.getUsers()
-        this.$vs.notify({title:'Utente Cancellato',text:'Utente Cancellato correttamente',color:'danger'})
+      this.getUsers()
+        this.$vs.notify({title:'Utente Cancellato',text:'Utente Cancellato manualmente',color:'danger'})
       })
       .catch(e =>{
         console.log(e)
@@ -119,7 +119,7 @@ export default {
     async unlockBadge(badge){
       await this.$store.dispatch('badges/delBadge', badge)
       this.getUsers()
-      this.$vs.notify({title:'Badge Sbloccato',text:'Badge sbloccato correttamente',color:'warning'})
+      this.$vs.notify({title:'Badge Sbloccato',text:'Badge sbloccato manualmente',color:'warning'})
                             
     },
     getCurrentDate(){
@@ -128,7 +128,7 @@ export default {
     async getUsers(){
       let queryString = ''
       if(this.data!="") queryString = '?entrata.data='+this.choosedData 
-      await this.$axios.$get('http://localhost:80/users'+queryString)
+      await this.$axios.$get('http://localhost:8080/users'+queryString)
       .then(res=>{
        this.users = res.map(el => {
          return {

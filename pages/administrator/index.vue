@@ -76,33 +76,22 @@ methods: {
                 else{this.errorformLogin[i] = false;}
             }
             if(this.counterErrorLogin == 0){
-              this.$axios.get('http://localhost:80/admin')
-                .then(({data})=>{
-                    for(let i in data){
-                      if(data[i].username == this.formLogin.username){
-                        if(data[i].password == this.formLogin.password) {
-                          this.errorCode = ''
-                          var token = Math.floor(Math.random() * (1000000 - 100000) + 1) + 10000
-                          this.$store.commit('admin/setState', {username: this.formLogin.username, token: token})
-                          this.$router.push('/administrator/home')
-                          }
-                          else{
-                        this.errorCode = "Errore sulla Password"
-                      }
+                if(this.$welcome.admin.username == this.formLogin.username){
+                    if(this.$welcome.admin.password == this.formLogin.password) {
+                      this.errorCode = ''
+                      var token = Math.floor(Math.random() * (1000000 - 100000) + 1) + 10000
+                      this.$store.commit('admin/setState', {username: this.formLogin.username, token: token})
+                      this.$router.push('/administrator/home')
                       }
                       else{
-                        this.errorCode = "Utente non trovato correggi Username/Password"
-                      }
-                    }
-                })
-                .catch(err=>{
-                    alert(err)
-                })
-
-
-                    }
-            }
-          
+                    this.errorCode = "Errore sulla Password"
+                  }
+                  }
+                  else{
+                    this.errorCode = "Utente non trovato correggi Username/Password"
+                  }
+                }
+              }   
 }
 }
 </script>

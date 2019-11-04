@@ -23,13 +23,13 @@ export const actions={
             if(e.state.badges[i].id == payload){
                 let id = e.state.badges[i].id
                 let idUser = e.state.badges[i].idUser
-                await axios.get('http://localhost:80/users?id='+idUser)
+                await axios.get('http://localhost:8080/users?id='+idUser)
                 .then(({data})=>{
                     data[0].uscita = {
                         'data': moment().format("DD-MM-YYYY"),
                         'ora': moment().format("HH:mm:ss")
                     }
-                    axios.put('http://localhost:80/users/'+idUser+'/', {
+                    axios.put('http://localhost:8080/users/'+idUser+'/', {
                         ...data[0]
                     })
                     .catch(e=>{
@@ -41,7 +41,7 @@ export const actions={
                 })
                 
                 e.commit('deleteBadge', i)
-                await axios.delete('http://localhost:80/badges/'+id+'/')
+                await axios.delete('http://localhost:8080/badges/'+id+'/')
                 .catch(e=>{
                     console.error(e)
                 })

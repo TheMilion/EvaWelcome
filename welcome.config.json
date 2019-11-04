@@ -1,0 +1,9 @@
+{
+    "maxIdBadge" : 50,
+    "admin": 
+        {
+          "id": 1,
+          "username": "admin",
+          "password": "admin"
+        }
+}

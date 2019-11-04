@@ -64,6 +64,7 @@ export default {
     middleware: 'info',
     data(){
         return{
+            maxIdBadge: this.$welcome.maxIdBadge,
             userDetails: {
                 ruoloSelect: "visitatore",
                 motivoSelect: "non_definito",
@@ -112,7 +113,7 @@ export default {
         },
         confirmBadge(){
             this.getCurrentDate()
-            this.$axios.$get('http://localhost:80/badges')
+            this.$axios.$get('http://localhost:8080/badges')
             .then(data=>{
                 let allBadge = data
                 allBadge.sort(function(a, b) {return a.id - b.id});
@@ -127,21 +128,21 @@ export default {
                         }
                     }
                     idB = count + 1
-                    if(idB > 50){
-                        for(var i = 1; i<50; i++){
+                    if(idB > this.maxIdBadge){
+                        for(var i = 1; i<this.maxIdBadge; i++){
                             if(allBadge[i-1].id != i){
                                 idB = i
                                 break;
                             }
                         }
-                        if(idB > 50) 
+                        if(idB > this.maxIdBadge) 
                         {
                             alert("non ci sono badge disponibili, ci scusiamo per il disagio")
                             return this.$router.push("/")
                         }
                     }
                 }
-                this.$axios.$get('http://localhost:80/users')
+                this.$axios.$get('http://localhost:8080/users')
                 .then(data=>{
                      let idU = ''
                     if(data.length == 0){
@@ -149,7 +150,7 @@ export default {
                     }else{
                         idU= data[data.length-1].id + 1
                     }
-                    this.$axios.$post('http://localhost:80/users', {
+                    this.$axios.$post('http://localhost:8080/users', {
                         id: idU,
                         nome: this.MyUser.nome,
                         cognome: this.MyUser.cognome,
@@ -169,7 +170,7 @@ export default {
                         }
                     })
                     .then(res=>{
-                        this.$axios.$post('http://localhost:80/badges', {
+                        this.$axios.$post('http://localhost:8080/badges', {
                             id: idB,
                             idUser: idU
                         })

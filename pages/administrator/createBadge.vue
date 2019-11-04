@@ -106,7 +106,7 @@ if(Object.keys(this.$store.getters['admin/getAdmin']).length == 0) {
 }},
 data(){
     return{
-        maxIdBadge: 50,
+        maxIdBadge: this.$welcome.maxIdBadge,
         minIdBadge: 1,
         idBadge: '',
         errorIdBadge: false,
@@ -178,7 +178,7 @@ methods: {
         }
         if(this.countererrorformAnagrafica == 0){
             this.getCurrentDate()
-            this.$axios.$get('http://localhost:80/badges')
+            this.$axios.$get('http://localhost:8080/badges')
             .then(data=>{
                 let allBadge = data
                 allBadge.sort(function(a, b) {return a.id - b.id});
@@ -187,7 +187,7 @@ methods: {
                         if(this.idBadge == allBadge[i].id){
                         return alert("Questo Id gia è utilizzato")}
                     }
-                this.$axios.$get('http://localhost:80/users')
+                this.$axios.$get('http://localhost:8080/users')
                 .then(data=>{
                      let idU = ''
                     if(data.length == 0){
@@ -195,7 +195,7 @@ methods: {
                     }else{
                         idU= data[data.length-1].id + 1
                     }
-                    this.$axios.$post('http://localhost:80/users', {
+                    this.$axios.$post('http://localhost:8080/users', {
                         id: idU,
                         nome: this.formAnagrafica.nome,
                         cognome: this.formAnagrafica.cognome,
@@ -215,7 +215,7 @@ methods: {
                         }
                     })
                     .then(res=>{
-                        this.$axios.$post('http://localhost:80/badges', {
+                        this.$axios.$post('http://localhost:8080/badges', {
                             id: this.idBadge,
                             idUser: idU
                         })

@@ -1,5 +1,26 @@
 {
-  "badges": [],
+  "badges": [
+    {
+      "id": 3,
+      "idUser": 3
+    },
+    {
+      "id": 4,
+      "idUser": 4
+    },
+    {
+      "id": 5,
+      "idUser": 5
+    },
+    {
+      "id": 6,
+      "idUser": 6
+    },
+    {
+      "id": 7,
+      "idUser": 7
+    }
+  ],
   "admin": [
     {
       "id": 1,
@@ -7,5 +28,101 @@
       "password": "admin"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": 3,
+      "nome": "123",
+      "cognome": "123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "badge": 3,
+      "entrata": {
+        "data": "04-11-2019",
+        "ora": "17:11:51"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    },
+    {
+      "id": 4,
+      "nome": "1231",
+      "cognome": "23123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "badge": 4,
+      "entrata": {
+        "data": "04-11-2019",
+        "ora": "17:11:55"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    },
+    {
+      "id": 5,
+      "nome": "1231231",
+      "cognome": "2123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "badge": 5,
+      "entrata": {
+        "data": "04-11-2019",
+        "ora": "17:11:59"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    },
+    {
+      "id": 6,
+      "nome": "123123",
+      "cognome": "123123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "badge": 6,
+      "entrata": {
+        "data": "04-11-2019",
+        "ora": "17:12:03"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    },
+    {
+      "id": 7,
+      "nome": "3123113212",
+      "cognome": "3123123",
+      "email": "",
+      "numtel": "",
+      "ruolo": "visitatore",
+      "motivo": "non_definito",
+      "descrizione": "",
+      "badge": 7,
+      "entrata": {
+        "data": "04-11-2019",
+        "ora": "17:12:07"
+      },
+      "uscita": {
+        "data": null,
+        "ora": null
+      }
+    }
+  ]
 }
