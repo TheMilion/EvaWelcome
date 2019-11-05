@@ -32,18 +32,21 @@ export const actions={
                     axios.put('http://localhost:8080/users/'+idUser+'/', {
                         ...data[0]
                     })
+                    .then(async res =>{
+                        await axios.delete('http://localhost:8080/badges/'+id+'/')
+                        .then(res=>{
+                            e.commit('deleteBadge', i)
+                        })
+                        .catch(e=>{
+                            console.error(e)
+                        })
+                    })
                     .catch(e=>{
                         console.error(e)
                     })
                 })
                 .catch(err=>{
                     alert(err)
-                })
-                
-                e.commit('deleteBadge', i)
-                await axios.delete('http://localhost:8080/badges/'+id+'/')
-                .catch(e=>{
-                    console.error(e)
                 })
             }
         }

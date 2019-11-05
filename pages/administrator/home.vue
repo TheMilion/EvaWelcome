@@ -86,11 +86,6 @@ export default {
       badges: []
     }
   },
-  computed:{
-    choosedData(){
-      return moment(this.data).format("DD-MM-YYYY")
-    }
-  },
   watch:{
     data(){
       this.getUsers()
@@ -106,7 +101,6 @@ export default {
   methods:{
 
     async deleteUser(id){
-      console.log(id)
       await this.$axios.delete('http://localhost:8080/users/'+id+'/')
       .then(res =>{
       this.getUsers()
@@ -116,28 +110,27 @@ export default {
         console.log(e)
       })
     },
-    async unlockBadge(badge){
-      await this.$store.dispatch('badges/delBadge', badge)
-      this.getUsers()
+    unlockBadge(badge){
+      this.$store.dispatch('badges/delBadge', badge)
       this.$vs.notify({title:'Badge Sbloccato',text:'Badge sbloccato manualmente',color:'warning'})
-                            
+      setTimeout(this.getUsers, 1000)                 
     },
     getCurrentDate(){
     return  moment().format("MM-DD-YYYY")
     },
     async getUsers(){
       let queryString = ''
-      if(this.data!="") queryString = '?entrata.data='+this.choosedData 
+      if(this.data!="") queryString = '?entrata.data='+ moment(this.data).format("DD-MM-YYYY")
       await this.$axios.$get('http://localhost:8080/users'+queryString)
       .then(res=>{
-       this.users = res.map(el => {
-         return {
-           ...el,
-           ts_entrata:  moment(el.entrata.data + ' ' + el.entrata.ora, 'DD-MM-YYYY HH:mm:ss').unix(),
-           ts_uscita:  (!el.uscita) ? 0 : moment(el.uscita.data + ' ' + el.uscita.ora, 'DD-MM-YYYY HH:mm:ss').unix()
-         }
-       })
-     })
+        this.users = res.map(el => {
+          return {
+            ...el,
+            ts_entrata:  moment(el.entrata.data + ' ' + el.entrata.ora, 'DD-MM-YYYY HH:mm:ss').unix(),
+            ts_uscita:  (!el.uscita) ? 0 : moment(el.uscita.data + ' ' + el.uscita.ora, 'DD-MM-YYYY HH:mm:ss').unix()
+          }
+        })
+      })
       .catch(e=>{
         console.log(e)
       })
