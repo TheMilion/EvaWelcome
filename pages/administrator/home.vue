@@ -52,13 +52,13 @@
                 {{data[indextr].badge}}
               </vs-td>
               <vs-td>
-                {{data[indextr].entrata.data}} {{data[indextr].entrata.ora}}
+                {{data[indextr].entrata}} 
               </vs-td>
               <vs-td>
-                {{data[indextr].uscita.data}} {{data[indextr].uscita.ora}}
+                {{data[indextr].uscita}}
               </vs-td>
               <vs-td>
-                <vs-button color="warning" v-if="!data[indextr].uscita.data" @click.prevent.stop="unlockBadge(data[indextr].badge)">Sblocca</vs-button>
+                <vs-button color="warning" v-if="!data[indextr].uscita" @click.prevent.stop="unlockBadge(data[indextr].badge)">Sblocca</vs-button>
                 <vs-button color="danger" v-else @click.prevent.stop="$refs.usersList[indextr].collapseExpandedData(); deleteUser(data[indextr].id)">Elimina</vs-button>
               </vs-td>
               <template class="expand-user" slot="expand">
@@ -92,16 +92,17 @@ export default {
     }
   },
   mounted() {
-    if(Object.keys(this.$store.getters['admin/getAdmin']).length != 0) {
-      this.getUsers()
-      this.data = moment().format("MM-DD-YYYY")
-    }
+    if(Object.keys(this.$store.getters['admin/getAdmin']).length != 0) this.data = moment().format("YYYY-MM-DD")
     else this.$router.push("/administrator")
   },
   methods:{
-
-    async deleteUser(id){
-      await this.$axios.delete('http://localhost:8080/users/'+id+'/')
+    openPopup(title,image){
+      this.titlePopup = title
+      this.signature = image
+      this.popupSignature = true
+    },
+    deleteUser(id){
+      this.$axios.delete('users/delete/'+id)
       .then(res =>{
       this.getUsers()
         this.$vs.notify({title:'Utente Cancellato',text:'Utente Cancellato manualmente',color:'danger'})
@@ -113,21 +114,36 @@ export default {
     unlockBadge(badge){
       this.$store.dispatch('badges/delBadge', badge)
       this.$vs.notify({title:'Badge Sbloccato',text:'Badge sbloccato manualmente',color:'warning'})
-      setTimeout(this.getUsers, 1000)                 
+      setTimeout(()=>{this.getUsers()}, 1000)                        
     },
     getCurrentDate(){
-    return  moment().format("MM-DD-YYYY")
+      return  moment().format("YYYY-MM-DD")
     },
-    async getUsers(){
-      let queryString = ''
-      if(this.data!="") queryString = '?entrata.data='+ moment(this.data).format("DD-MM-YYYY")
-      await this.$axios.$get('http://localhost:8080/users'+queryString)
+    getUsers(){
+      console.log("DataView" ,this.data)
+      var method = ''
+      var axiosCall = ''
+      var dataDB = ''
+      if(this.data == "") {
+        axiosCall = "users/"
+        dataDB = ''
+        method = '$get'
+      } else {
+        axiosCall = "users/search"
+        dataDB = {entrata: moment(this.data).format("YYYY-MM-DD")}
+        method = '$post'
+      }
+      console.log("dataDB", dataDB)
+      console.log(axiosCall)
+      this.$axios[method](axiosCall, dataDB)
       .then(res=>{
         this.users = res.map(el => {
+          el.entrata = moment(el.entrata).format("DD-MM-YYYY HH:mm")
+          el.uscita = (!el.uscita) ? '' : moment(el.uscita).format("DD-MM-YYYY HH:mm")
           return {
             ...el,
-            ts_entrata:  moment(el.entrata.data + ' ' + el.entrata.ora, 'DD-MM-YYYY HH:mm:ss').unix(),
-            ts_uscita:  (!el.uscita) ? 0 : moment(el.uscita.data + ' ' + el.uscita.ora, 'DD-MM-YYYY HH:mm:ss').unix()
+            ts_entrata:  moment(el.entrata, 'DD-MM-YYYY HH:mm').unix(),
+            ts_uscita:  (!el.uscita) ? '' : moment(el.uscita, 'DD-MM-YYYY HH:mm').unix()
           }
         })
       })
@@ -137,6 +153,7 @@ export default {
     }
   }
 }
+    
 </script>
 <style scoped>
 .button{

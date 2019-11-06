@@ -19,8 +19,8 @@
                     <tr>
                         <span v-for="(badge, i) in filtredBadges" :key="i">
                             <td style="padding:10px" v-if="i %2==0" >
-                                <vs-button class="circle" color="#BC1254" @click="confirmBadge(badge.id)">
-                                    <h1 style="font-size: 54px">{{ badge.id }}</h1>
+                                <vs-button class="circle" color="#BC1254" @click="confirmBadge(badge.idBadge)">
+                                    <h1 style="font-size: 54px">{{ badge.idBadge }}</h1>
                                 </vs-button>
                             </td>
                         </span>
@@ -28,8 +28,8 @@
                      <tr>
                         <span v-for="(badge, i) in filtredBadges" :key="i">
                             <td style="padding:10px" v-if="i %2!=0">
-                                <vs-button class="circle" color="#BC1254" @click="confirmBadge(badge.id)">
-                                    <h1 style="font-size: 54px">{{ badge.id }}</h1>
+                                <vs-button class="circle" color="#BC1254" @click="confirmBadge(badge.idBadge)">
+                                    <h1 style="font-size: 54px">{{ badge.idBadge }}</h1>
                                 </vs-button>
                             </td>
                         </span>
@@ -112,7 +112,7 @@ export default {
             let filtredBadges = [];
             for(let i in this.badges){
                 if(this.researchBadge){
-                    if(this.badges[i].id.toString().startsWith(this.researchBadge)){
+                    if(this.badges[i].idBadge.toString().startsWith(this.researchBadge)){
                         filtredBadges.push(this.badges[i])
                     }
                 } else {
