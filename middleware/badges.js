@@ -5,6 +5,6 @@ export default async function(context){
         app.store.commit('badges/setBadges', data)       
     })
     .catch(e=>{
-        alert(e)
+        // app.router.push({path:'/error', query: {error: 'Error: network database'}})
     })
 }

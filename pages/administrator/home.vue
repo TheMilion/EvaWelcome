@@ -108,7 +108,7 @@ export default {
         this.$vs.notify({title:'Utente Cancellato',text:'Utente Cancellato manualmente',color:'danger'})
       })
       .catch(e =>{
-        console.log(e)
+        // this.$router.push({path:'/error', query: {error: 'Error: network database'}})
       })
     },
     unlockBadge(badge){
@@ -120,7 +120,6 @@ export default {
       return  moment().format("YYYY-MM-DD")
     },
     getUsers(){
-      console.log("DataView" ,this.data)
       var method = ''
       var axiosCall = ''
       var dataDB = ''
@@ -133,8 +132,6 @@ export default {
         dataDB = {entrata: moment(this.data).format("YYYY-MM-DD")}
         method = '$post'
       }
-      console.log("dataDB", dataDB)
-      console.log(axiosCall)
       this.$axios[method](axiosCall, dataDB)
       .then(res=>{
         this.users = res.map(el => {
@@ -148,7 +145,7 @@ export default {
         })
       })
       .catch(e=>{
-        console.log(e)
+        // this.$router.push({path:'/error', query: {error: 'Error: network database'}})
       })
     }
   }

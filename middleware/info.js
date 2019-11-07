@@ -3,6 +3,11 @@ export default function(context){
     var user = app.store.getters['user/getUser']
     var userDetails = app.store.getters['userDetails/getUserDetails']
 
+
+    app.$axios.get('users')
+    .catch(e=>{
+        // app.router.push({path:'/error', query: {error: 'Error: network database'}})
+    })
     if(user){
         let cookieUser = app.$cookies.get('userTemp') 
             if(cookieUser  == undefined || cookieUser == ''){

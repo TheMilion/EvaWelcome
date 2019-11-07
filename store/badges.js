@@ -1,8 +1,31 @@
-import axios from 'axios'
-import moment from 'moment'
-
 export const state = () => ({
-    "badges":[]
+    "badges":[
+        {
+            id: 1,
+            idBadge:1,
+            idUser:1
+        },
+        {
+            id: 2,
+            idBadge:2,
+            idUser:2
+        },
+        {
+            id: 3,
+            idBadge:3,
+            idUser:3
+        },
+        {
+            id: 4,
+            idBadge:4,
+            idUser:4
+        },
+        {
+            id: 5,
+            idBadge:5,
+            idUser:5
+        }
+    ]
 })
 export const getters = {
     getBadges(state){
@@ -23,9 +46,9 @@ export const actions={
             if(e.state.badges[i].idBadge == payload){
                 let idBadge = e.state.badges[i].idBadge
                 let idUser = e.state.badges[i].idUser
-                axios.put('http://192.168.2.28:3000/users/exit/'+idUser, {signout: ' '})
+                this.$axios.put('users/exit/'+idUser, {signout: ' '})
                 .then(res =>{
-                    axios.delete('http://192.168.2.28:3000/badges/delete/'+idBadge)
+                    this.$axios.delete('badges/delete/'+idBadge)
                     .then(res=>{
                         e.commit('deleteBadge', i)
                     })

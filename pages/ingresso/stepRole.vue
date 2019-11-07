@@ -158,19 +158,18 @@ export default {
                             idUser: res.id
                         })
                         .then(res=>{
-                            console.log('creato il badge', res)
                             this.$router.push({path: "/ingresso/stepConfirm" , query:{num: idB}})
                         })
                         .catch(e=>{
-                            console.log(e)
+                            // this.$router.push({path:'/error', query: {error: 'Error: network database'}})
                         })
                     })
                     .catch(e=>{
-                        console.log(e)
+                        // this.$router.push({path:'/error', query: {error: 'Error: network database'}})
                     })
                 })
             .catch(e=>{
-                console.log(e)
+                // this.$router.push({path:'/error', query: {error: 'Error: network database'}})
             })
         },
 
